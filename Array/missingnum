@@ -1,0 +1,20 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int findmissingno(int a[],int n,int tot)
+{
+    for(int i=0;i<n;i++)
+    {
+        tot=tot-a[i];
+    }
+    return tot;
+}
+int main() {
+    int a[]={1,2,4,6,8,9,10,7,3};
+    int n=sizeof(a)/sizeof(a[0]);
+    int m=n+1;//bcoz the size is should have been n+1 by including the missing number
+    int tot=m*(m+1)/2;
+    cout<<findmissingno(a,n,tot);
+    return 0;
+}
