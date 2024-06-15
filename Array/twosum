@@ -1,0 +1,41 @@
+
+#include <bits/stdc++.h>
+using namespace std;
+bool target_sum(vector <int > v,int n,int t)
+{
+    sort(v.begin(),v.end());
+    int first=0,last=n-1;
+    while(first<last)
+    {
+    if(v[first]+v[last]==t)
+    {
+        return true;
+    }
+    else if(v[first]+v[last]>t)
+    {
+        last--;
+    }
+    else
+    {
+        first++;
+    }
+    }
+    return false;
+}
+
+int main() {
+    vector <int> a={1,0,2,1,0,2,2,1};
+    int n=a.size();
+    int target;
+    cin>>target;
+    bool yesorno=target_sum(a,n,target);
+    if (yesorno==1)
+    {
+        cout<<"yes";
+    }
+    else
+    {
+        cout<<"no";
+    }
+    return 0;
+}
