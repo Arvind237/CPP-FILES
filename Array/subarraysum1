@@ -1,33 +1,35 @@
+
 #include <bits/stdc++.h>
 using namespace std;
-int subarrlen(vector <int> v,int n, long long k)
+int longsublen(vector <int > v,int n,long long k)
 {
-    int right=0,left=0;
+    long long sum=0;
     int maxLen=0;
-    long long sum=v[right];
-    while(right<n)
+    map<long long,int> m;
+    for(int i=0;i<n;i++)
     {
-        while(sum>k && left<=right)
-        {
-            sum-=v[left];left++;
-        }
+        sum+=v[i];
         if(sum==k)
         {
-            maxLen=max(maxLen,right-left+1);
+            maxLen=max(maxLen,i+1);
+        
         }
-        right++;
-        if(right<n)
+        long long rem=sum-k;
+        if(m.find(rem)!=m.end())
         {
-        sum+=v[right];
+            int lenn=i-m[rem];
+            maxLen=max(maxLen,lenn);
         }
+        m[sum]=i;
     }
     return maxLen;
 }
 int main() {
-    vector <int>v={1,2,3,4,1,1,1};
+    vector <int> v={7,1,2,3,1,2,5};
     int n=v.size();
-    long long k;cin>>k;
-    int l=subarrlen(v,n,k);
+    long long k;
+    cin>>k;
+    int l=longsublen(v,n,k);
     cout<<l;
     return 0;
 }
