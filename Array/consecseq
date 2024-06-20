@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+int consecseq(vector <int> arr,int n)
+{
+    unordered_set <int> s;
+    for(int i=0;i<n;i++)
+    {
+        s.insert(arr[i]);
+    }
+    int longest=1,cnt=0,lastsmall=INT_MIN;
+    for(auto it:s)
+    {
+        if(s.find((it)-1)!=s.end())
+        {
+            cnt++;
+            lastsmall=(it);
+        }
+        else if(s.find((it)-1)==s.end())
+        {
+            cnt=1;
+            lastsmall=(it);
+            int x=(it);
+            while(s.find(x+1)!=s.end())
+            {
+                cnt++;
+                x++;
+            }
+            longest=max(longest,cnt);
+        }
+    }
+    return longest;
+}
+int main() {
+    vector <int> v={3,1,7,8,6,2,5,4};
+    int n=v.size();
+    cout<<consecseq(v,n);
+    return 0;
+}
